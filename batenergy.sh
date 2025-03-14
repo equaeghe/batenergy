@@ -9,7 +9,7 @@ now=`date +'%s'`
 
 read energy_now < /sys/class/power_supply/BAT0/energy_now #μWh
 read energy_full < /sys/class/power_supply/BAT0/energy_full # μWh
-read online < /sys/class/power_supply/AC/online
+read online < "$(ls /sys/class/power_supply/{AC,ADP1}/online 2>/dev/null | head -n1)"
 
 
 (($online)) && echo "Currently on mains."
