@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 FILE=/tmp/batenergy.dat
-AC=(/sys/class/power_supply/AC*)
+ADP=(/sys/class/power_supply/A*)
 BAT=(/sys/class/power_supply/BAT*)
 
 [[ -e $BAT ]] || exit
@@ -29,8 +29,8 @@ read_energy() {
 read_energy now
 read_energy full
 
-if [[ -f $AC/online ]]; then
-	read online < "$AC"/online
+if [[ -f $ADP/online ]]; then
+	read online < "$ADP"/online
 
 	if (( online )); then
 		echo "Currently on mains."
